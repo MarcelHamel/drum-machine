@@ -19,76 +19,76 @@
         <div class="res-row">
           <div class="seq-key">
             <div class="light" data-index="0"></div>
-            <div class="key" data-index="0">1</div>
+            <div class="key" id="0" data-index="0">1</div>
           </div>
           <div class="seq-key">
             <div class="light" data-index="1"></div>
-            <div class="key" data-index="1">e</div>
+            <div class="key" id="1" data-index="1">e</div>
           </div>
           <div class="seq-key" >
             <div class="light" data-index="2"></div>
-            <div class="key" data-index="2">&</div>
+            <div class="key" id="2" data-index="2">&</div>
           </div>
           <div class="seq-key" >
             <div class="light" data-index="3"></div>
-            <div class="key" data-index="3">a</div>
+            <div class="key" id="3" data-index="3">a</div>
           </div>
         </div>
 
         <div class="res-row">
           <div class="seq-key">
             <div class="light" data-index="4"></div>
-            <div class="key" data-index="4">2</div>
+            <div class="key" id="4" data-index="4">2</div>
           </div>
           <div class="seq-key">
             <div class="light" data-index="5"></div>
-            <div class="key" data-index="5">e</div>
+            <div class="key" id="5" data-index="5">e</div>
           </div>
           <div class="seq-key">
             <div class="light" data-index="6"></div>
-            <div class="key" data-index="6">&</div>
+            <div class="key" id="6" data-index="6">&</div>
           </div>
           <div class="seq-key">
             <div class="light" data-index="7"></div>
-            <div class="key" data-index="7">a</div>
+            <div class="key" id="7" data-index="7">a</div>
           </div>
         </div>
 
         <div class="res-row">
           <div class="seq-key">
             <div class="light" data-index="8"></div>
-            <div class="key" data-index="8">3</div>
+            <div class="key" id="8" data-index="8">3</div>
           </div>
           <div class="seq-key">
             <div class="light" data-index="9"></div>
-            <div class="key" data-index="9">e</div>
+            <div class="key" id="9" data-index="9">e</div>
           </div>
           <div class="seq-key" >
             <div class="light" data-index="10"></div>
-            <div class="key" data-index="10">&</div>
+            <div class="key" id="10" data-index="10">&</div>
           </div>
           <div class="seq-key" >
             <div class="light" data-index="11"></div>
-            <div class="key" data-index="11">a</div>
+            <div class="key" id="11" data-index="11">a</div>
           </div>
         </div>
 
         <div class="res-row">
           <div class="seq-key">
             <div class="light" data-index="12"></div>
-            <div class="key" data-index="12">4</div>
+            <div class="key" id="12" data-index="12">4</div>
           </div>
           <div class="seq-key">
             <div class="light" data-index="13"></div>
-            <div class="key" data-index="13">e</div>
+            <div class="key" id="13" data-index="13">e</div>
           </div>
           <div class="seq-key">
             <div class="light" data-index="14"></div>
-            <div class="key" data-index="14">&</div>
+            <div class="key" id="14" data-index="14">&</div>
           </div>
           <div class="seq-key">
             <div class="light" data-index="15"></div>
-            <div class="key" data-index="15">a</div>
+            <div class="key" id="15" data-index="15">a</div>
           </div>
         </div>
 
@@ -101,16 +101,16 @@
           <button id="stop">STOP</button>
           <!-- <button id="submit">SUBMIT</button> -->
           <div id="bpm">
-            <input type="text" />
+            <input type="number" min="40" max="400" />
               BPM
           </div>
         </div>
       </section> <!-- controls -->
-      <section id="controls">
+      <section id="drum-selector">
         <div class="res-row">
-          <button id="snare">SNARE</button>
-          <button id="kick">KICK</button>
-          <button id="hat">HI-HAT</button>
+          <button id="snare" class ="drum-select" data-drum="1">SNARE</button>
+          <button id="kick" data-drum="2">KICK</button>
+          <button id="hat" data-drum="3">HI-HAT</button>
         </div>
       </section>
 

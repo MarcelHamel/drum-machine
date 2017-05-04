@@ -38,41 +38,71 @@ document.addEventListener('DOMContentLoaded', function(){
   var intervalID;
 
   var playSequence = function(rhythm) {
+    // Begin playback at beginning of sequencer array
     var seqPos = 0;
 
-      // What is this setInterval doing?
-      intervalID = setInterval(function(){
+    // setInterval iterates through playback array
+    intervalID = setInterval(function(){
 
-        rhythm[seqPos].forEach(function(i){
-          var audio = document.querySelector(`audio[data-note='${i}']`);
-          audio.currentTime = 0;
-          audio.play();
-        });
+      // For each audio sample in subarray
+      rhythm[seqPos].forEach(function(i){
+        // Find specific audio HTML element via data attribute
+        var audio = document.querySelector(`audio[data-note='${i}']`);
+        // Reset audio sample to beginning of clip
+        audio.currentTime = 0;
+        // Play audio sample
+        audio.play();
+      });
 
-        var light = document.querySelector(`.light[data-index='${seqPos}']`);
-        light.classList.add('lit');
-        if (rhythm[seqPos].length > 0) {
-          document.querySelector(`.key[data-index='${seqPos}']`)
-                  .classList
-                  .add('lit');
-        }
-        seqPos < 15 ? seqPos++ : seqPos = 0;
-      }, bpm); // End setInterval
+      // Triggers "light" and CSS transforms for active sample
+      var light = document.querySelector(`.light[data-index='${seqPos}']`);
+      light.classList.add('lit');
+      if (rhythm[seqPos].length > 0) {
+        document.querySelector(`.key[data-index='${seqPos}']`)
+                .classList
+                .add('lit');
+      }
+
+      // Checks to see if playback has reached the end of the array
+      // Returns to beginning if so
+      seqPos < 15 ? seqPos++ : seqPos = 0;
+      // bpm is tempo set via user input above
+    }, bpm);
+    // End setInterval
   };
 
   // Set variable to hold selected drum...
+  var selectedDrum = 1;
+
+  document.querySelector('#drum-selector').addEventListener('click', function(e) {
+    if (e.target && e.target.matches('button')) {
+      if (document.querySelector('.drum-select')) {
+        document.querySelector('.drum-select').classList.toggle('drum-select');
+      }
+      e.target.classList.toggle('drum-select');
+      selectedDrum = e.target.dataset.drum;
+      userSequence.forEach(function(i) {
+        if (i.length === 0) return;
+        i.includes(selectedDrum + 'a' || selectedDrum + 'b') ?
+          document.getElementById(`${userSequence.indexOf(i)}`).classList.add('key-select') :
+          document.getElementById(`${userSequence.indexOf(i)}`).classList.remove('key-select');
+      })
+      console.log(selectedDrum);
+    }
+  })
   // Maybe add later.
 
   // //Sequence Key event listener w/ event delegation
   document.querySelector('#sequencer').addEventListener('click', function(e) {
     if (e.target && e.target.matches('div.key')) {
       e.target.classList.toggle('key-select');
-          var i = parseInt(e.target.dataset.index);
+        var i = parseInt(e.target.dataset.index);
 
-          var sample = i % 2 == 0 || i === 0 ? '3a' : '3b';
+        var sample = i % 2 == 0 || i === 0 ? selectedDrum + 'a' : selectedDrum + 'b';
 
-          userSequence[i].includes(sample) ? userSequence[i].splice(userSequence.indexOf(sample), 1)
-                                      : userSequence[i].push(sample);
+        userSequence[i].includes(sample) ?
+          userSequence[i].splice(userSequence.indexOf(sample), 1)
+          : userSequence[i].push(sample);
     }
   });
 

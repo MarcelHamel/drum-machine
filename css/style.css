@@ -76,6 +76,9 @@ nav {
   background-color: #961e1e;
 }
 
+.drum-select {
+  background-color: rgba(86,253,166,0.3);
+}
 
 .active {
   color: #ffaa02;
@@ -109,9 +112,7 @@ nav {
   justify-content: space-around;
 }
 
-#play,
-#stop,
-#bpm {
+button {
   background: #FFF;
   border-radius: 10px;
   text-align: center;
