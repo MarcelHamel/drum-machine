@@ -1,0 +1,246 @@
+body {
+  background-color: #19272e;
+  background-image: url("https://www.transparenttextures.com/patterns/soft-wallpaper.png");
+}
+
+/*Nav styling*/
+nav {
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+  background: black;
+  height: 100px;
+  color: white;
+  font-family: Times New Roman;
+  font-style: italic;
+  font-size: 36px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+/*Page layout and containers*/
+
+#container {
+  max-width: 800px;
+  height: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100vh;
+  margin-top: 0;
+  margin-bottom: 0;
+  box-sizing: border-box;
+}
+
+#sequencer {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.res-row {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.seq-key {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 100px;
+}
+
+/*Sequencer styling*/
+
+.key {
+  border: 2px solid black;
+  width: 50px;
+  height: 50px;
+  border-radius: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 36px;
+  color: #808080;
+  transition: all .07s ease;
+}
+
+.key-select {
+  color: #FFF;
+  background-color: #961e1e;
+}
+
+
+.active {
+  color: #ffaa02;
+  background: #0F0;
+  box-shadow: 0 0 5px #ffaa02;
+}
+
+.light {
+  border: 1px solid black;
+  width: 15px;
+  height: 15px;
+  background-color: #961e1e;
+  border-radius: 50%;
+  transition: all .07s ease;
+}
+
+.lit {
+  transform: scale(1.1);
+  background-color: red;
+  box-shadow: 0 0 5px red;
+}
+
+/*Playback controls*/
+
+#controls {
+  display: flex;
+  flex-direction: row;
+  font-family: Arial;
+  font-size: 24px;
+  margin-top: 50px;
+  justify-content: space-around;
+}
+
+#play,
+#stop,
+#bpm {
+  background: #FFF;
+  border-radius: 10px;
+  text-align: center;
+  height: 50px;
+  width: 150px;
+  border: 2px solid #000;
+  font-family: Times New Roman;
+  font-style: italic;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#bpm {
+  display: inline;
+  margin: 0;
+  box-sizing: border-box;
+  color: black;
+  min-width: 150px;
+}
+
+input {
+  height: 40px;
+  width: 80px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+/*Loss/Error Display*/
+
+#error-loss {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100px;
+  margin-top: 30px;
+}
+
+.outcome {
+  display: none;
+  font-size: 48px;
+  font-family: Arial;
+  font-style: italic;
+  font-weight: bold;
+}
+
+#lose {
+  color: red;
+}
+
+#bad-input {
+  color: black;
+}
+
+/*Instruction and Victory Overlays*/
+
+.overlay {
+  display: none;
+  color: #FFF;
+  font-style: italic;
+  font-family: Times New Roman;
+  text-align: center;
+}
+
+.inst-overlay {
+display: inline-flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+position: fixed;
+width: 100%;
+height: 100%;
+top: 0;
+left: 0;
+background: rgba(0,0,0,0.90);
+z-index: 1;
+}
+
+p {
+  font-size: 24px;
+}
+
+#play-again {
+  margin-top: 80px;
+  width: 500px;
+  display: flex;
+  justify-content: space-around;
+}
+
+#play-again button {
+  background: rgba(0,0,0,0.0);
+  border: 2px solid #FFF;
+  color: #FFF;
+  font-style: italic;
+  font-family: Times New Roman;
+  text-align: center;
+  border-radius: 5%;
+  width: 150px;
+  height: 50px;
+  font-size: 24px
+}
+
+ #inst-content {
+   max-width: 960px;
+ }
+
+/*Media queries... optimized for desktop browsers only*/
+
+ @media (max-width: 500px) {
+   #controls {
+     flex-direction: column;
+   }
+
+  .res-row {
+    width: 100%;
+  }
+
+  nav {
+    height: 50px;
+    font-size: 18px;
+  }
+
+  #play,
+  #submit {
+    margin-bottom: 10px;
+  }
+
+  #controls {
+    margin-top: 20px;
+  }
+
+ }
