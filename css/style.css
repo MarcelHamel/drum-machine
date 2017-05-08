@@ -1,6 +1,8 @@
 body {
-  background-color: #19272e;
-  background-image: url("https://www.transparenttextures.com/patterns/soft-wallpaper.png");
+  /*background-color: #19272e;
+  background-image: url("https://www.transparenttextures.com/patterns/soft-wallpaper.png");*/
+  background-color: #211c08;
+  background-image: url("https://www.transparenttextures.com/patterns/tileable-wood.png");
 }
 
 /*Nav styling*/
