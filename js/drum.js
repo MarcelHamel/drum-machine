@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function(){
   // Storing query selections...
   var playButton = document.querySelector('#play');
   var stopButton = document.querySelector('#stop');
-  var inputField = document.querySelector('input');
+  var tempoField = document.querySelector('#bpm');
   var keys = document.querySelectorAll('.key');
   var lights = document.querySelectorAll('.light');
   var badInput = document.querySelector('#badinput');
@@ -17,11 +17,12 @@ document.addEventListener('DOMContentLoaded', function(){
   var userSequence = [[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]];
 
   // Set tempo functionality
-  var bpm = 125
+
+  var bpmInMS = 125;
+  var bpm = 120;
 
   var newTempo = function(input) {
-    // var interval = inputField.value;
-    bpm = 60000 / (input * 4);
+    bpmInMS = 60000 / (input * 4);
   }
 
   // Halts animation class.
@@ -38,6 +39,7 @@ document.addEventListener('DOMContentLoaded', function(){
   var intervalID;
 
   var playSequence = function(rhythm) {
+    playButton.classList.toggle('playing')
     // Begin playback at beginning of sequencer array
     var seqPos = 0;
 
@@ -55,8 +57,6 @@ document.addEventListener('DOMContentLoaded', function(){
       });
 
       // Triggers "light" and CSS transforms for active sample
-      var light = document.querySelector(`.light[data-index='${seqPos}']`);
-      light.classList.add('lit');
       if (rhythm[seqPos].length > 0) {
         document.querySelector(`.key[data-index='${seqPos}']`)
                 .classList
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', function(){
       // Returns to beginning if so
       seqPos < 15 ? seqPos++ : seqPos = 0;
       // bpm is tempo set via user input above
-    }, bpm);
+    }, bpmInMS);
     // End setInterval
   };
 
@@ -118,22 +118,80 @@ document.addEventListener('DOMContentLoaded', function(){
   stopButton.addEventListener('click', function() {
     if (!loopPlaying) return;
     clearInterval(intervalID);
+    playButton.classList.toggle('playing');
     loopPlaying = false;
   });
 
 
-  // Tempo event listener
-  inputField.addEventListener('keypress', function(e) {
-
-    // Checking if the keypress is the ENTER key
-    if (e.which === 13 && parseInt(inputField.value) < 401 && parseInt(inputField.value) > 39)  {
-      newTempo(inputField.value);
-    }
-    if (parseInt(inputField.value) > 399) {
-      badInput.style.display = 'initial';
-      setTimeout(function(){
-        badInput.style.display = 'none';
-      }, 1000);
+  // Drum selector animation listeners
+  document.querySelector('#drum-selector').addEventListener('mousedown', function(e) {
+    if (e.target && e.target.matches('button')) {
+      e.target.classList.toggle('press');
     }
   });
+
+  document.querySelector('#drum-selector').addEventListener('mouseup', function(e) {
+    if (e.target && e.target.matches('button')) {
+      e.target.classList.toggle('press');
+    }
+  });
+
+  // Sequencer key animation listeners
+  document.querySelector('#sequencer').addEventListener('mousedown', function(e) {
+    if (e.target && e.target.matches('div.key')) {
+      e.target.classList.toggle('press');
+    }
+  });
+
+  document.querySelector('#sequencer').addEventListener('mouseup', function(e) {
+    if (e.target && e.target.matches('div.key')) {
+      e.target.classList.toggle('press');
+    }
+  });
+
+  // Playback button animation listeners
+  document.querySelector('#controls').addEventListener('mousedown', function(e) {
+    if (e.target && e.target.matches('button')) {
+      e.target.classList.toggle('press');
+      if (e.target.getAttribute('id') === 'stop') e.target.classList.add('stop');
+    }
+  });
+
+  document.querySelector('#controls').addEventListener('mouseup', function(e) {
+    if (e.target && e.target.matches('button')) {
+      e.target.classList.toggle('press');
+      if (e.target.getAttribute('id') === 'stop') e.target.classList.remove('stop');
+    }
+  });
+
+
+  document.querySelector('#speed-up').addEventListener('click', function(e) {
+      console.log('Arrow clicked!');
+      bpm++;
+      console.log('BPM:', bpm);
+      tempoField.innerHTML = bpm;
+      newTempo(bpm);
+  })
+
+  document.querySelector('#slow-down').addEventListener('click', function(e) {
+      console.log('Arrow clicked!');
+      bpm--;
+      console.log('BPM:', bpm);
+      tempoField.innerHTML = bpm;
+      newTempo(bpm);
+  })
+  // Tempo event listener
+//   inputField.addEventListener('keypress', function(e) {
+
+//     // Checking if the keypress is the ENTER key
+//     if (e.which === 13 && parseInt(inputField.value) < 401 && parseInt(inputField.value) > 39)  {
+//       newTempo(inputField.value);
+//     }
+//     if (parseInt(inputField.value) > 399) {
+//       badInput.style.display = 'initial';
+//       setTimeout(function(){
+//         badInput.style.display = 'none';
+//       }, 1000);
+//     }
+//   });
 });
